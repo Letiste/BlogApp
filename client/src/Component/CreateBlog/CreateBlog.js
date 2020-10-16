@@ -1,6 +1,5 @@
-import React from "react"
+import React from "react";
 
 export default function CreateBlog() {
-
-  return <h1>Create blog</h1>
+  return <h1>Create blog</h1>;
 }
