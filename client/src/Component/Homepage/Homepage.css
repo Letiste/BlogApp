@@ -1,8 +1,14 @@
 .homepage {
   display: flex;
   justify-content: center;
+  flex-direction: row-reverse;
   margin-right: 5%;
   margin-left: 5%;
+}
+@media (max-width: 760px) {
+  .homepage {
+    flex-direction: column;
+  }
 }
 
 .blogs {
@@ -17,6 +23,7 @@
   padding: 10px;
   box-shadow: 2px 2px 2px rgba(50, 50, 50, 0.5);
   cursor: pointer;
+  max-width: 500px;
 }
 
 .blog:hover {
