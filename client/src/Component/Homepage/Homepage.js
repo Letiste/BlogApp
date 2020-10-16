@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
 import "./Homepage.css";
 
@@ -11,9 +12,9 @@ export default function Homepage() {
           type="search"
           placeholder="Search a blog..."
         />
-        <a href="/create">
+        <Link to="/create">
           <button className="createButton">Create a blog</button>
-        </a>
+        </Link>
       </div>
       <div className="separator"/>
 
