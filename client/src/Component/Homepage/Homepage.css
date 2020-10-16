@@ -11,13 +11,13 @@
   }
 }
 
-.blogs {
+.posts {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.blog {
+.post {
   border: 2px solid rgb(200, 200, 200);
   border-radius: 6px;
   padding: 10px;
@@ -26,7 +26,7 @@
   max-width: 500px;
 }
 
-.blog:hover {
+.post:hover {
   border-color: rgb(150, 150, 150);
 }
 
