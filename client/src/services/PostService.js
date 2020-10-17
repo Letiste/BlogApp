@@ -1,23 +1,23 @@
 import http from './http-common';
 
 function create(post) {
-  http.post('/posts', post);
+  return http.post('/posts', post);
 }
 
 function getAll() {
-  http.get('/posts');
+  return http.get('/posts');
 }
 
 function getOne(id) {
-  http.get(`/posts/${id}`);
+  return http.get(`/posts/${id}`);
 }
 
 function update(id) {
-  http.patch(`/posts/${id}`);
+  return http.patch(`/posts/${id}`);
 }
 
 function destroy(id) {
-  http.delete(`/posts/${id}`);
+  return http.delete(`/posts/${id}`);
 }
 
 export default {
