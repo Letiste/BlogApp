@@ -33,7 +33,7 @@ export default function Homepage() {
         {posts.map((post) => (
           <Link to={'/posts/' + post.id}>
             <p key={post.id} className="post">
-              {post.title}, {post.author}, {post.content}
+              {post.title}, {post.author}
             </p>
           </Link>
         ))}
