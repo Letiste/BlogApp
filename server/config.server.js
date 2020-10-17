@@ -1,7 +1,12 @@
-const express = require("express");
+const express = require('express');
+const bodyParser = require('body-parser');
 
-const app = express()
+const app = express();
 
-app.get("/", (req, res) => res.json({message: "Welcome to Blog App"}))
+app.use(bodyParser.json());
 
-module.exports = app
+app.get('/', (req, res) => res.json({ message: 'Welcome to Blog App' }));
+
+require('./routes/post')(app);
+
+module.exports = app;
