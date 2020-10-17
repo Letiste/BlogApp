@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import { convertToRaw } from 'draft-js';
-import draftToMarkdown from 'draftjs-to-markdown';
 
 import PostService from '../../services/PostService';
 
@@ -10,13 +9,13 @@ import './CreatePost.css';
 
 function onEditorStateChange(editorState, setValue) {
   const rawContentState = convertToRaw(editorState.getCurrentContent());
-  setValue(draftToMarkdown(rawContentState));
+  setValue(rawContentState);
 }
 
 export default function CreatePost() {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState();
 
   function handlePublish() {
     const post = { title, author, content };
