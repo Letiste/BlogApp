@@ -31,8 +31,8 @@ export default function Homepage() {
 
       <div className="posts">
         {posts.map((post) => (
-          <Link to={'/posts/' + post.id}>
-            <p key={post.id} className="post">
+          <Link to={'/posts/' + post.id} key={post.id}>
+            <p className="post">
               {post.title}, {post.author}
             </p>
           </Link>
