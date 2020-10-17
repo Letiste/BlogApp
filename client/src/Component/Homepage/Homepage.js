@@ -6,7 +6,7 @@ import "./Homepage.css";
 export default function Homepage() {
   return (
     <div className="homepage">
-          <div className="menu">
+      <div className="menu">
         <input
           className="search"
           type="search"
@@ -16,6 +16,7 @@ export default function Homepage() {
           <button className="createButton">Create a post</button>
         </Link>
       </div>
+
       <div className="separator"/>
 
       <div className="posts">
