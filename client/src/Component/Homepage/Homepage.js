@@ -1,9 +1,19 @@
-import React from "react";
-import {Link} from "react-router-dom"
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-import "./Homepage.css";
+import PostService from '../../services/PostService';
+
+import './Homepage.css';
 
 export default function Homepage() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    PostService.getAll()
+      .then((res) => setPosts(res.data))
+      .catch((err) => console.log('ERROR', err));
+  }, []);
+
   return (
     <div className="homepage">
       <div className="menu">
@@ -17,14 +27,16 @@ export default function Homepage() {
         </Link>
       </div>
 
-      <div className="separator"/>
+      <div className="separator" />
 
       <div className="posts">
-        <p className="post">Velit voluptate dolore minim proident velit in. Anim Lorem et ut incididunt nisi ea officia. Ullamco esse amet aliqua laborum eu reprehenderit in laboris tempor fugiat enim anim. Velit amet magna enim ex do cillum minim nostrud occaecat laboris aute consequat et sint. </p>
-        <p className="post">Sint do fugiat laborum pariatur dolore aliquip ut velit incididunt dolore ea quis.</p>
-        <p className="post">Je suis un post !</p>
-        <p className="post">Je suis un post !</p>
-        <p className="post">Je suis un post !</p>
+        {posts.map((post) => (
+          <Link to={'/posts/' + post.id}>
+            <p key={post.id} className="post">
+              {post.title}, {post.author}
+            </p>
+          </Link>
+        ))}
       </div>
     </div>
   );

@@ -14,6 +14,7 @@ exports.create = async (req, res) => {
 
     res.status(201).send({ message: 'Post was successfully created' });
   } catch (err) {
+    console.log(err);
     res.status(500).send({ message: err.message });
   }
 };
@@ -45,9 +46,9 @@ exports.update = async (req, res) => {
     const id = req.params.id;
     const post = await Post.findByPk(id);
 
-    post.title = req.body.title;
-    post.author = req.body.author;
-    post.content = req.body.content;
+    post.title = req.body.title || post.title;
+    post.author = req.body.author || post.author;
+    post.content = req.body.content || post.content;
 
     await post.save();
 
