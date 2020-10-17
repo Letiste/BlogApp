@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import { convertToRaw } from 'draft-js';
 import draftToMarkdown from 'draftjs-to-markdown';
-import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
+import PostService from '../../services/PostService';
+
+import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './CreatePost.css';
 
 function onEditorStateChange(editorState, setValue) {
@@ -12,10 +14,15 @@ function onEditorStateChange(editorState, setValue) {
 }
 
 export default function CreatePost() {
-  const [markdown, setMarkdown] = useState();
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [content, setContent] = useState('');
 
   function handlePublish() {
-    console.log(markdown);
+    const post = { title, author, content };
+    PostService.create(post)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -31,11 +38,17 @@ export default function CreatePost() {
               className="inputForm"
               id="title"
               placeholder="My super Post"
+              onChange={(e) => setTitle(e.target.value)}
             />
-            <label className="label" htmlFor="autor">
-              Autor :
+            <label className="label" htmlFor="author">
+              Author :
             </label>
-            <input className="inputForm" id="autor" placeholder="John Doe" />
+            <input
+              className="inputForm"
+              id="author"
+              placeholder="John Doe"
+              onChange={(e) => setAuthor(e.target.value)}
+            />
           </div>
           <input
             className="publishButton"
@@ -49,7 +62,7 @@ export default function CreatePost() {
           editorClassName="editor-class"
           toolbarClassName="toolbar-class"
           onEditorStateChange={(editorState) =>
-            onEditorStateChange(editorState, setMarkdown)
+            onEditorStateChange(editorState, setContent)
           }
         />
       </div>
