@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Editor } from 'react-draft-wysiwyg';
 import { convertToRaw } from 'draft-js';
 
@@ -17,10 +18,12 @@ export default function CreatePost() {
   const [author, setAuthor] = useState('');
   const [content, setContent] = useState();
 
+  let history = useHistory();
+
   function handlePublish() {
     const post = { title, author, content };
     PostService.create(post)
-      .then((res) => console.log(res.data))
+      .then(() => history.push('/'))
       .catch((err) => console.log(err));
   }
 
