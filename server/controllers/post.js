@@ -1,4 +1,5 @@
 const db = require('../models/index');
+const { Op } = require('sequelize');
 const Post = db.Post;
 
 // Create and save a new Post
@@ -22,7 +23,18 @@ exports.create = async (req, res) => {
 // Retrieve all Posts
 exports.findAll = async (req, res) => {
   try {
-    const posts = await Post.findAll();
+    const search = req.query.search ?? '';
+
+    const posts = await Post.findAll({
+      attributes: ['id', 'title', 'author', 'updatedAt'],
+      where: {
+        [Op.or]: [
+          { title: { [Op.substring]: search } },
+          { author: { [Op.substring]: search } },
+        ],
+      },
+    });
+
     res.status(200).send(posts);
   } catch (err) {
     res.status(500).send({ message: err.message });

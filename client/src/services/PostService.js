@@ -4,8 +4,8 @@ function create(post) {
   return http.post('/posts', post);
 }
 
-function getAll() {
-  return http.get('/posts');
+function getAll(search) {
+  return http.get(`/posts?search=${search}`);
 }
 
 function getOne(id) {
