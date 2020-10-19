@@ -1,0 +1,35 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.postTitle {
+  font-size: 32px;
+}
+
+.postInfo {
+  min-width: 30%;
+  display: flex;
+  margin-top: 0;
+  justify-content: space-between;
+}
+
+.postAuthor {
+  font-style: oblique;
+}
+
+.postDate {
+  font-style: italic;
+}
+
+.postSeparator {
+  background-color: rgb(50, 50, 50);
+  height: 2px;
+  width: 50%;
+  margin: 25px;
+}
+
+.postContent {
+  width: 80%;
+}
