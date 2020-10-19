@@ -10,7 +10,10 @@ export default function Homepage() {
 
   useEffect(() => {
     PostService.getAll()
-      .then((res) => setPosts(res.data))
+      .then((res) => {
+        console.log(res.data);
+        setPosts(res.data);
+      })
       .catch((err) => console.log('ERROR', err));
   }, []);
 
@@ -32,8 +35,14 @@ export default function Homepage() {
       <div className="posts">
         {posts.map((post) => (
           <Link to={'/posts/' + post.id} key={post.id}>
-            <p className="post">
-              {post.title}, {post.author}
+            <p className="postCard">
+              <h3 className="postCardTitle">{post.title}</h3>
+              <p className="postCardInfo">
+                <span className="postCardAuthor">{post.author}</span>
+                <span className="postCardDate">
+                  {post.updatedAt.split('T')[0]}
+                </span>
+              </p>
             </p>
           </Link>
         ))}
