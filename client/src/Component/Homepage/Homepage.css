@@ -5,11 +5,6 @@
   margin-left: 5%;
   margin-right: 5%;
 }
-@media (max-width: 760px) {
-  .homepage {
-    flex-direction: column;
-  }
-}
 
 .posts {
   display: flex;
@@ -66,4 +61,19 @@
 
 .createButton:hover {
   background-color: rgb(20, 20, 20);
+}
+
+@media (max-width: 760px) {
+  .homepage {
+    flex-direction: column;
+  }
+  .posts {
+    align-items: center;
+  }
+  .separator {
+    align-self: center;
+    margin-top: 15px;
+    height: 2px;
+    width: 60%;
+  }
 }
