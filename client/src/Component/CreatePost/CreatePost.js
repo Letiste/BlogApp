@@ -8,9 +8,9 @@ import PostService from '../../services/PostService';
 import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './CreatePost.css';
 
-function onEditorStateChange(editorState, setValue) {
+function onEditorStateChange(editorState, setContent) {
   const rawContentState = convertToRaw(editorState.getCurrentContent());
-  setValue(rawContentState);
+  setContent(rawContentState);
 }
 
 export default function CreatePost() {
@@ -23,7 +23,10 @@ export default function CreatePost() {
   function handlePublish() {
     const post = { title, author, content };
     PostService.create(post)
-      .then(() => history.push('/'))
+      .then(() => {
+        history.push('/');
+        localStorage.clear();
+      })
       .catch((err) => console.log(err));
   }
 
