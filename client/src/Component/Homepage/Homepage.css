@@ -64,7 +64,15 @@
   transition: all 300ms;
 }
 
-.postCardDelete:hover {
+.postCardEdit {
+  position: absolute;
+  top: 5px;
+  right: 35px;
+  transition: all 300ms;
+}
+
+.postCardDelete:hover,
+.postCardEdit:hover {
   transform: scale(1.3);
 }
 
@@ -117,8 +125,5 @@
   }
   .postCard {
     width: 400px;
-  }
-  .postCardDelete {
-    margin-left: 380px;
   }
 }

@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import PostService from '../../services/PostService';
 
 import './Homepage.css';
 import deleteIcon from '../../assets/deleteIcon.svg';
+import editIcon from '../../assets/editIcon.svg';
 
 export default function Homepage() {
   const [posts, setPosts] = useState([]);
   const [search, setSearch] = useState(['']);
+
+  let history = useHistory();
 
   useEffect(() => {
     PostService.getAll(search)
@@ -24,6 +27,11 @@ export default function Homepage() {
         setPosts(newPosts);
       })
       .catch(console.log);
+  }
+
+  function handleEditPostCard(e, id) {
+    e.preventDefault();
+    history.push(`/posts/edit/${id}`);
   }
 
   return (
@@ -54,6 +62,12 @@ export default function Homepage() {
                     src={deleteIcon}
                     alt="Delete"
                     onClick={(e) => handleDeletePostCard(e, post.id, index)}
+                  />
+                  <img
+                    className="postCardEdit"
+                    src={editIcon}
+                    alt="Edit"
+                    onClick={(e) => handleEditPostCard(e, post.id)}
                   />
                   <p className="postCardInfo">
                     <span className="postCardAuthor">{post.author}</span>
