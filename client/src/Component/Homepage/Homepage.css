@@ -33,7 +33,6 @@
 .postCard:hover {
   border-color: rgb(150, 150, 150);
   box-shadow: 1px 1px 1px rgb(150, 150, 150);
-  transform: translateY(-5px);
 }
 
 .postCardTitle {

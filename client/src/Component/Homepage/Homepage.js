@@ -46,8 +46,8 @@ export default function Homepage() {
         {posts.length > 0 ? (
           <>
             {posts.map((post, index) => (
-              <Link to={'/posts/' + post.id} key={post.id}>
-                <div className="postCard">
+              <div className="postCard" key={post.id} id={post.id}>
+                <Link to={'/posts/' + post.id}>
                   <p className="postCardTitle">{post.title}</p>
                   <img
                     className="postCardDelete"
@@ -61,8 +61,8 @@ export default function Homepage() {
                       {post.updatedAt.split('T')[0]}
                     </span>
                   </p>
-                </div>
-              </Link>
+                </Link>
+              </div>
             ))}
           </>
         ) : (
