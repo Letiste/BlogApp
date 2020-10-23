@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PostService from '../../services/PostService';
 
 import './Homepage.css';
+import deleteIcon from '../../assets/deleteIcon.svg';
 
 export default function Homepage() {
   const [posts, setPosts] = useState([]);
@@ -11,10 +12,7 @@ export default function Homepage() {
 
   useEffect(() => {
     PostService.getAll(search)
-      .then((res) => {
-        console.log(res.data);
-        setPosts(res.data);
-      })
+      .then((res) => setPosts(res.data))
       .catch((err) => console.log('ERROR', err));
   }, [search]);
 
@@ -39,15 +37,20 @@ export default function Homepage() {
           <>
             {posts.map((post) => (
               <Link to={'/posts/' + post.id} key={post.id}>
-                <p className="postCard">
+                <div className="postCard">
                   <p className="postCardTitle">{post.title}</p>
+                  <img
+                    className="postCardDelete"
+                    src={deleteIcon}
+                    alt="Delete"
+                  />
                   <p className="postCardInfo">
                     <span className="postCardAuthor">{post.author}</span>
                     <span className="postCardDate">
                       {post.updatedAt.split('T')[0]}
                     </span>
                   </p>
-                </p>
+                </div>
               </Link>
             ))}
           </>
