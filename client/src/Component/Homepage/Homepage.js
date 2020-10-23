@@ -14,7 +14,17 @@ export default function Homepage() {
     PostService.getAll(search)
       .then((res) => setPosts(res.data))
       .catch((err) => console.log('ERROR', err));
-  }, [search]);
+  }, [search, posts]);
+
+  function handleDeletePostCard(e, id, indexArray) {
+    e.preventDefault();
+    PostService.destroy(id)
+      .then(() => {
+        const newPosts = posts.splice(indexArray, 1);
+        setPosts(newPosts);
+      })
+      .catch(console.log);
+  }
 
   return (
     <div className="homepage">
@@ -35,7 +45,7 @@ export default function Homepage() {
       <div className="posts">
         {posts.length > 0 ? (
           <>
-            {posts.map((post) => (
+            {posts.map((post, index) => (
               <Link to={'/posts/' + post.id} key={post.id}>
                 <div className="postCard">
                   <p className="postCardTitle">{post.title}</p>
@@ -43,6 +53,7 @@ export default function Homepage() {
                     className="postCardDelete"
                     src={deleteIcon}
                     alt="Delete"
+                    onClick={(e) => handleDeletePostCard(e, post.id, index)}
                   />
                   <p className="postCardInfo">
                     <span className="postCardAuthor">{post.author}</span>
